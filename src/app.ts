@@ -10,12 +10,13 @@ import morgan from "morgan";
 const app = express();
 const PORT = 8000;
 
-app.use(cors({
-    origin: "http://localhost:3000",
-    credentials: true,
-}));
 app.use(morgan("dev"));
 app.use(express.json());
+app.use(cors({
+    origin: "*",
+    credentials: true,
+}));
+
 app.use("/media", express.static(path.join(__dirname, "../media")));
 app.use("/posts", postsRoutes);
 app.use(notFound);

@@ -1,9 +1,9 @@
 {
   "name": "task-express-m3-middlewares-nosql-ts",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/app.ts",
   "scripts": {
-    "start": "nodemon src/app.ts",
+    "start": "nodemon src/app.ts",  
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
