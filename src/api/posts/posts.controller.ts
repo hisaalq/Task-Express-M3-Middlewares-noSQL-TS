@@ -1,5 +1,5 @@
 import Post from "../../models/Post";
-import { Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
 
 export const getPosts = async (req: Request, res: Response) => {
     try {
@@ -10,13 +10,14 @@ export const getPosts = async (req: Request, res: Response) => {
     }
 };
 
-export const createPost = async (req: Request, res: Response) => {
+export const createPost = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { title, body } = req.body;
-        const post = await Post.create({ title, body });
-        res.json(post);
+        const image = req.file?.path;
+        const post = await Post.create({ title, body, image });
+        res.status(201).json(post);
     } catch (error) {
-        res.status(500).json({ message: "Error creating post" });
+        next(error);
     }
 };
 
